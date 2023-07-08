@@ -25,7 +25,9 @@ jobs:
         run: yarn global add ts-node
 
       - name: Run script
-        run: ts-node ./src/scripts/crowdin/getCrowdinContributors.ts
+        run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
+        env:
+          CROWDIN_API_KEY: ${{ secrets.CROWDIN_API_KEY }}
 
       - name: Set up git
         run: |
