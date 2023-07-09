@@ -39,6 +39,8 @@ jobs:
         run: |
           git add -A
           git commit -m "Update Crowdin contributors"
+          git fetch origin
+          git rebase origin/dev
           git push origin automated-update
 
       - name: Create Pull Request
