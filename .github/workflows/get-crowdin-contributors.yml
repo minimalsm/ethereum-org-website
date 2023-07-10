@@ -33,42 +33,20 @@ jobs:
         id: date
         run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
-      - name: Fetch latest dev and create new branch
-        run: |
-          git fetch origin dev
-          git checkout -b automated-update origin/dev
-
-      - name: Run script
-        run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
+      - name: Run script and Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         env:
+          TIMESTAMP: ${{ env.TIMESTAMP }}
           CROWDIN_API_KEY: ${{ secrets.CROWDIN_API_KEY }}
-      
-      - name: Check changes
-        run: |
-          git status
-          git diff
-
-      - name: Commit and push
-        run: |
-          git add -A
-          git commit -m "Update Crowdin contributors"
-          git push origin automated-update
-          
-      - name: Check new branch
-        run: |
-          git fetch origin automated-update
-          git log --oneline -n 5 automated-update
-          
-      - name: Check dev branch
-        run: |
-          git checkout dev
-          git log --oneline -n 5
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: automated-update
-          branch: crowdin-changes
-          title: Automated update
+          base: dev
+          branch: automated-update-${{ env.TIMESTAMP }}
+          title: Automated update ${{ env.TIMESTAMP }}
           body: This is an automated update.
+          commit-message: "Update Crowdin contributors"
+          script: |
+            git fetch origin dev
+            git checkout -b automated-update-${{ env.TIMESTAMP }} origin/dev
+            npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
+            git add -A
