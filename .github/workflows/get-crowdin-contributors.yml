@@ -8,7 +8,6 @@ on:
 jobs:
   create_pr:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -46,7 +45,5 @@ jobs:
           body: This is an automated update.
           commit-message: "Update Crowdin contributors"
           script: |
-            git fetch origin dev
-            git checkout -b automated-update-${{ env.TIMESTAMP }} origin/dev
             npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
             git add -A
