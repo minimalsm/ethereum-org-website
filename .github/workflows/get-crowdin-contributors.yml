@@ -23,35 +23,37 @@ jobs:
 
       - name: Install ts-node
         run: yarn global add ts-node
+         
+      - name: Set up git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Action"
+
+      - name: Generate timestamp
+        id: date
+        run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+      - name: Fetch latest dev and create new branch
+        run: |
+          git fetch origin dev
+          git checkout -b automated-update-$TIMESTAMP origin/dev
 
       - name: Run script
         run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
         env:
           CROWDIN_API_KEY: ${{ secrets.CROWDIN_API_KEY }}
-    
-      - name: Generate timestamp
-        id: date
-        run: echo "::set-output name=timestamp::$(date +'%Y%m%d%H%M%S')"
-
-      - name: Set up git
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Action"
-          git checkout -b automated-update-${{ steps.date.outputs.timestamp }}
 
       - name: Commit and push
         run: |
           git add -A
           git commit -m "Update Crowdin contributors"
-          git fetch origin
-          git rebase origin/dev
-          git push origin automated-update-${{ steps.date.outputs.timestamp }}
+          git push origin automated-update-$TIMESTAMP
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: dev
-          branch: automated-update-${{ steps.date.outputs.timestamp }}
-          title: Automated update ${{ steps.date.outputs.timestamp }}
+          branch: automated-update-$TIMESTAMP
+          title: Automated update $TIMESTAMP
           body: This is an automated update.
