@@ -48,6 +48,11 @@ jobs:
           git add -A
           git commit -m "Update Crowdin contributors"
           git push origin automated-update-${{ env.TIMESTAMP }}
+          
+      - name: Check dev branch
+        run: |
+          git checkout dev
+          git log --oneline -n 5
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
