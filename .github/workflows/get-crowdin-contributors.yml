@@ -33,10 +33,9 @@ jobs:
         id: date
         run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
-      - name: Fetch latest dev and create new branch
+      - name: Create new branch
         run: |
-          git fetch origin dev
-          git checkout -b "automated-update-${{ env.TIMESTAMP }}" origin/dev
+          git checkout -b "automated-update-${{ env.TIMESTAMP }}"
 
       - name: Run script
         run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
@@ -46,10 +45,10 @@ jobs:
       - name: Commit and push
         run: |
           git add -A
-          git commit -m "Update Crowdin contributors"
+          git commit -m "Update Crowdin contributors at ${{ env.TIMESTAMP }}"
           git push origin "automated-update-${{ env.TIMESTAMP }}"
 
       - name: Create Pull Request
         run: |
           gh auth login --with-token <<< ${{ secrets.GITHUB_TOKEN }}
-          gh pr create --base dev --head "automated-update-${{ env.TIMESTAMP }}" --title "Automated update ${{ env.TIMESTAMP }}" --body "This is an automated update of contributors from Crowdin."
+          gh pr create --base dev --head "automated-update-${{ env.TIMESTAMP }}" --title "Automated update ${{ env.TIMESTAMP }}" --body "This PR was automatically created to update Crowdin contributors. This workflows runs every Sunday at 00:00 (UTC).\n\nThank you to everyone contributing to translate ethereum.org ❤️"
