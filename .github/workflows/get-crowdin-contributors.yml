@@ -1,25 +1,20 @@
 name: Update Crowdin Contributors
-
 on:
   schedule:
     - cron: "0 0 * * *" # Runs every day at midnight
   workflow_dispatch:
-
 jobs:
   create_pr:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Install dependencies
         run: yarn install
-
       - name: Install ts-node
         run: yarn global add ts-node
          
@@ -27,23 +22,43 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Action"
-
       - name: Generate timestamp
         id: date
         run: echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
-      - name: Run script and Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+      - name: Fetch latest dev and create new branch
+        run: |
+          git fetch origin dev
+          git checkout -b automated-update origin/dev
+      - name: Run script
+        run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
         env:
-          TIMESTAMP: ${{ env.TIMESTAMP }}
           CROWDIN_API_KEY: ${{ secrets.CROWDIN_API_KEY }}
+
+      - name: Check changes
+        run: |
+          git status
+          git diff
+      - name: Commit and push
+        run: |
+          git add -A
+          git commit -m "Update Crowdin contributors"
+          git push origin automated-update
+          
+      - name: Check new branch
+        run: |
+          git fetch origin automated-update
+          git log --oneline -n 5 automated-update
+          
+      - name: Check dev branch
+        run: |
+          git checkout dev
+          git log --oneline -n 5
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: dev
-          branch: automated-update-${{ env.TIMESTAMP }}
-          title: Automated update ${{ env.TIMESTAMP }}
+          base: automated-update
+          branch: crowdin-changes
+          title: Automated update
           body: This is an automated update.
-          commit-message: "Update Crowdin contributors"
-          script: |
-            npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
-            git add -A
