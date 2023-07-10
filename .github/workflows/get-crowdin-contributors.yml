@@ -42,12 +42,22 @@ jobs:
         run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
         env:
           CROWDIN_API_KEY: ${{ secrets.CROWDIN_API_KEY }}
+      
+      - name: Check changes
+        run: |
+          git status
+          git diff
 
       - name: Commit and push
         run: |
           git add -A
           git commit -m "Update Crowdin contributors"
           git push origin automated-update-${{ env.TIMESTAMP }}
+          
+      - name: Check new branch
+        run: |
+          git fetch origin automated-update-${{ env.TIMESTAMP }}
+          git log --oneline -n 5 automated-update-${{ env.TIMESTAMP }}
           
       - name: Check dev branch
         run: |
