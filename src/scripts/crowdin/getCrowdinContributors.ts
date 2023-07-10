@@ -8,8 +8,9 @@ async function main() {
   await getAndSaveDirectories()
   const directoryIds = getDirectoryIds()
   await fetchAndSaveFileIds(directoryIds)
-  const translatedMarkdownPaths = await getTranslatedMarkdownPaths()
-  await getTranslationCostsReport(translatedMarkdownPaths)
+  // Commenting out to test script more quickly
+  // const translatedMarkdownPaths = await getTranslatedMarkdownPaths()
+  // await getTranslationCostsReport(translatedMarkdownPaths)
 }
 
 main()
