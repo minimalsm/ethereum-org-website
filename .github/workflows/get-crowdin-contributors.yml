@@ -36,7 +36,7 @@ jobs:
       - name: Fetch latest dev and create new branch
         run: |
           git fetch origin dev
-          git checkout -b automated-update-${{ env.TIMESTAMP }} origin/dev
+          git checkout -b automated-update origin/dev
 
       - name: Run script
         run: npx ts-node -O '{"module":"commonjs"}' ./src/scripts/crowdin/getCrowdinContributors.ts
@@ -52,12 +52,12 @@ jobs:
         run: |
           git add -A
           git commit -m "Update Crowdin contributors"
-          git push origin automated-update-${{ env.TIMESTAMP }}
+          git push origin automated-update
           
       - name: Check new branch
         run: |
-          git fetch origin automated-update-${{ env.TIMESTAMP }}
-          git log --oneline -n 5 automated-update-${{ env.TIMESTAMP }}
+          git fetch origin automated-update
+          git log --oneline -n 5 automated-update
           
       - name: Check dev branch
         run: |
@@ -66,11 +66,9 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
-        env:
-          TIMESTAMP: ${{ env.TIMESTAMP }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: dev
-          branch: automated-update-${{ env.TIMESTAMP }}
-          title: Automated update ${{ env.TIMESTAMP }}
+          base: automated-update
+          branch: crowdin-changes
+          title: Automated update
           body: This is an automated update.
