@@ -86,7 +86,7 @@ APPLY({ Alice: $50, Bob: $50 },"send $70 from Alice to Bob") = ERROR
 2. 检查该区块的时间戳是否大于上一个区块 <sup>[fn2]（注释编号）</sup>的时间戳并且在将来 2 小时以内
 3. 检查区块上的工作量证明是否有效。
 4. 令前一个区块末尾的态为 `S[0]`。
-5. 假设 `TX` 是该区块的交易列表，其中包含 `n` 个交易。 对于 `0...n-1` 中的每个数字 `i`，依次执行 `S[i+1] = APPLY(S[i],TX[i])`。 如果有任何一次对 `APPLY` 的调用返回了错误，退出并返回 false。
+5. 假设 `TX` 是该区块的交易列表，其中包含 `n` 个交易。 对于 `0...n-1` 中的所有 `i`，如果有任何应用程序返回错误，退出并返回 false，请设置 `S[i+1] = APPLY(S[i],TX[i])`。
 6. 返回 true，并将 `S[n]` 登记为该区块末尾的状态。
 
 本质上，区块中的每笔交易都必须提供一个有效的状态转换，从交易执行前的规范状态转换到某个新状态。 注意，状态并未编码到区块。它纯粹只是校验节点记住的抽象概念，只能被任意区块从创世状态开始，按顺序加上每一个区块的每一笔交易，（安全地）计算出当前状态。 另外，需要注意矿工将交易收录进区块的顺序。如果一个区块中有A、B两笔交易，B花费的是A创建的UTXO，如果A在B之前，这个区块是有效的，否则，这个区块无效。
@@ -331,7 +331,7 @@ def register(name, value):
 
 **2. 作物保险**。 用户可以轻松地制订金融衍生品合约，但使用的是天气而不是任何价格指数的数据馈送。 如果爱荷华州的一位农民购买了一项金融衍生品，该产品基于爱荷华的降雨情况进行反向赔付，那么如果遇到干旱，该农民将自动收到赔付资金，而且如果降雨充沛，他会很开心，因为他的作物收成会很好。 通常，这种保险可以扩展到自然灾害保险。
 
-**3. 去中心化数据馈送**。 对于金融差价合约，实际上有可能通过一种名为“[谢林币](https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed/)”的协议将数据馈送去中心化。 谢林币的基本工作原理如下。N 个相关方都向系统输入给定数据的值（以太币/美元价格），对这些值进行排序，在第 25 和第 75 百分位之间的每个人都会得到一个代币作为奖励。 每个人都有动力提供其他人都会提供的答案，而唯一能让众多参与者实际达成一致的值是显而易见的：真相。 这样就创建了一种去中心化的协议，它理论上可以提供任何数量的值，包括以太币/美元的价格、柏林的温度、甚至某个硬计算的结果。
+**3. 去中心化数据馈送**。 对于金融差价合约，实际上有可能通过一种名为“[谢林币](http://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed/)”的协议将数据馈送去中心化。 谢林币的基本工作原理如下。N 个相关方都向系统输入给定数据的值（以太币/美元价格），对这些值进行排序，在第 25 和第 75 百分位之间的每个人都会得到一个代币作为奖励。 每个人都有动力提供其他人都会提供的答案，而唯一能让众多参与者实际达成一致的值是显而易见的：真相。 这样就创建了一种去中心化的协议，它理论上可以提供任何数量的值，包括以太币/美元的价格、柏林的温度、甚至某个硬计算的结果。
 
 **4. 智能多重签名托管**。 比特币允许多重签名交易合约，例如，提供了给定五个密钥中的三个便可以使用资金。 以太坊允许更精细的控制；例如，提供五个密钥中的四个可以使用任意数额的资金，提供五个密钥中的三个可以每天最多使用 10% 的资金，提供五个密钥中的两个可以每天最多使用 0.5% 的资金。 此外，以太坊的多重签名是异步的 — 双方可以在不同时间在区块链上注册他们的签名，最后一个签名将自动发送交易。
 
@@ -383,7 +383,7 @@ def register(name, value):
 3. 实际中挖矿能力的分配最终可能极端不平等。
 4. 热衷于破坏网络的投机者、政敌和疯子确实存在，他们可以巧妙地设置合约，使得他们的成本远低于其他验证节点支付的成本。
 
-(1) 让矿工趋向于收录更少的交易，并且 (2) 增加 `NC`；因此，这两种作用会相互抵消 一部分 。<sup>[如何抵消？](https://web.archive.org/web/20250427212319/https://github.com/ethereum/wiki/issues/447#issuecomment-316972260#issuecomment-316972260)</sup> (3) 和 (4) 是主要问题，为了解决它们，我们简单地制订了一个 浮动上限：没有区块能够包含比 `BLK_LIMIT_FACTOR` 乘以长期指数移动平均值更多的操作数。 具体如下：
+(1) 让矿工趋向于收录更少的交易，并且 (2) 增加 `NC`；因此，这两种作用会相互抵消 一部分 。<sup>[如何抵消？](https://github.com/ethereum/wiki/issues/447#issuecomment-316972260)</sup> (3) 和 (4) 是主要问题，为了解决它们，我们简单地制订了一个 浮动上限：没有区块能够包含比 `BLK_LIMIT_FACTOR` 乘以长期指数移动平均值更多的操作数。 具体如下：
 
 ```js
 blk.oplimit = floor((blk.parent.oplimit * (EMAFACTOR - 1) +
@@ -508,10 +508,10 @@ _尽管采用了线性发行方式，然而和比特币一样，以太币的长�
 16. [GHOST 协议](https://eprint.iacr.org/2013/881.pdf)
 17. [StorJ 和自治代理，Jeff Garzik](http://garzikrants.blogspot.ca/2013/01/storj-and-bitcoin-autonomous-agents.html)
 18. [Mike Hearn 在图灵节上谈论智能资产](https://www.youtube.com/watch?v=MVyv4t0OKe4)
-19. [以太坊递归长度前缀编码 (RLP)](https://web.archive.org/web/20250427212320/https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-RLP)
-20. [以太坊默克尔帕特里夏树](https://web.archive.org/web/20250427212320/https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Patricia-Tree)
+19. [以太坊递归长度前缀编码 (RLP)](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-RLP)
+20. [以太坊默克尔帕特里夏树](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Patricia-Tree)
 21. [Peter Todd 论默克尔求和树](https://web.archive.org/web/20140623061815/http://sourceforge.net/p/bitcoin/mailman/message/31709140/)
 
-_有关本白皮书的历史，请参阅[此维基文章](https://web.archive.org/web/20250427212319/https://github.com/ethereum/wiki/blob/old-before-deleting-all-files-go-to-wiki-wiki-instead/old-whitepaper-for-historical-reference.md)。_
+_有关本白皮书的历史，请参阅[此维基文章](https://github.com/ethereum/wiki/blob/old-before-deleting-all-files-go-to-wiki-wiki-instead/old-whitepaper-for-historical-reference.md)。_
 
 _和众多社区驱动的开源软件项目一样，以太坊自启动以来一直不断发展。 若想了解以太坊的最新进展以及如何更改以太坊协议，我们推荐你阅读[本指南](/learn/)。_
