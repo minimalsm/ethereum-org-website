@@ -15,7 +15,7 @@ Vous trouverez ici quelques exemples de quiz actuels :
 - [Couche 2](/layer-2)
 - [NFT](/nft/)
 - [Qu'est-ce qu'Ethereum ?](/what-is-ethereum/)
-- [Qu'est-ce que l'ETH ?](/what-is-ether/)
+- [Qu'est-ce que l'ETH ?](/eth/)
 
 ## Ajouter un quiz d'apprentissage
 
