@@ -23,7 +23,7 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Set to "false" to actually delete, "true" for dry-run
-          DRY_RUN: "true"
+          DRY_RUN: "false"
         run: |
           set -euo pipefail
 
@@ -33,7 +33,7 @@ jobs:
 
           # 1. Fetch deploys with safety pagination
           ALL_DEPLOYS="[]"
-          for PAGE in {1..20}; do
+          for PAGE in {1..100}; do
             RESPONSE=$(curl -s -H "Authorization: Bearer $NETLIFY_TOKEN" \
               "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID/deploys?per_page=100&page=$PAGE")
 
@@ -63,8 +63,8 @@ jobs:
             CREATED=$(echo "$DEPLOY" | jq -r '.created_at')
             URL=$(echo "$DEPLOY" | jq -r '.deploy_ssl_url // .deploy_url // "no-url"')
 
-            # Never touch production branches
-            if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == "master" ]] || [[ "$BRANCH" == "production" ]]; then
+            # Never touch production/staging branches
+            if [[ "$BRANCH" == "main" ]] || [[ "$BRANCH" == "master" ]] || [[ "$BRANCH" == "production" ]] || [[ "$BRANCH" == "staging" ]] || [[ "$BRANCH" == "dev" ]]; then
               continue
             fi
 
