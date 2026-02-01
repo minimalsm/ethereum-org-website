@@ -39,7 +39,7 @@ Ciallaíonn cruthúnas ar gheall an méid seo a leanas:
 
 Tá go leor faisnéise laistigh de bhloc. Ag an leibhéal is airde tá na réimsí seo a leanas i mbloc:
 
-| Réimse           | Cur síos                                                  |
+| Réimse           | Tuairisc                                                  |
 |:---------------- |:--------------------------------------------------------- |
 | `slot`           | an sliotán lena mbaineann an bloc                         |
 | `proposer_index` | ID an bhailíochtóra a mhol an bloc                        |
@@ -49,7 +49,7 @@ Tá go leor faisnéise laistigh de bhloc. Ag an leibhéal is airde tá na réims
 
 Tá roinnt réimsí dá chuid féin sa bhloc `corp`:
 
-| Réimse               | Cur síos                                                                |
+| Réimse               | Tuairisc                                                                |
 |:-------------------- |:----------------------------------------------------------------------- |
 | `randao_reveal`      | luach a úsáidtear chun an chéad mholtóir bloc eile a roghnú             |
 | `eth1_data`          | faisnéis faoin gconradh taisce                                          |
@@ -64,7 +64,7 @@ Tá roinnt réimsí dá chuid féin sa bhloc `corp`:
 
 Sa réimse `fianuithe` tá liosta de na fianuithe go léir sa bhloc. Tá a gcineál sonraí féin ag fianuithe ina bhfuil roinnt píosaí sonraí. Tá gach fianú:
 
-| Réimse             | Cur síos                                                |
+| Réimse             | Tuairisc                                                |
 |:------------------ |:------------------------------------------------------- |
 | `aggregation_bits` | liosta de na bailíochtóirí a ghlac páirt san fhianú seo |
 | `data`             | coimeádán le foréimsí iolracha                          |
@@ -72,7 +72,7 @@ Sa réimse `fianuithe` tá liosta de na fianuithe go léir sa bhloc. Tá a gcine
 
 Tá an méid seo a leanas sa réimse `sonraí` sa `fhianú`:
 
-| Réimse              | Cur síos                                            |
+| Réimse              | Tuairisc                                            |
 |:------------------- |:--------------------------------------------------- |
 | `slot`              | an sliotán lena mbaineann an fianú                  |
 | `index`             | innéacsanna le haghaidh bailíochtóirí fianaithe     |
@@ -84,7 +84,7 @@ Nuair a ritear na hidirbhearta sa `execution_payload`, nuashonraítear an staid 
 
 Tá na réimsí seo a leanas sa `execution_payload_header`:
 
-| Réimse              | Cur síos                                                                          |
+| Réimse              | Tuairisc                                                                          |
 |:------------------- |:--------------------------------------------------------------------------------- |
 | `parent_hash`       | hais an mháthairbhloic                                                            |
 | `fee_recipient`     | seoladh cuntais chun táillí idirbhirt a íoc leis                                  |
@@ -104,7 +104,7 @@ Tá na réimsí seo a leanas sa `execution_payload_header`:
 
 Tá na nithe seo a leanas sa `execution_payload` féin (tabhair faoi deara go bhfuil sé seo comhionann leis an gceanntásc ach amháin go n-áirítear ann liosta iarbhír na n-idirbhearta agus faisnéis aistarraingthe in ionad hais fréimhe na n-idirbhearta):
 
-| Réimse             | Cur síos                                                                          |
+| Réimse             | Tuairisc                                                                          |
 |:------------------ |:--------------------------------------------------------------------------------- |
 | `parent_hash`      | hais an mháthairbhloic                                                            |
 | `fee_recipient`    | seoladh cuntais chun táillí idirbhirt a íoc leis                                  |
@@ -124,7 +124,7 @@ Tá na nithe seo a leanas sa `execution_payload` féin (tabhair faoi deara go bh
 
 Sa liosta `aistarraingtí` tá réada `aistarraingt` struchtúrtha mar a leanas:
 
-| Réimse           | Cur síos                             |
+| Réimse           | Tuairisc                             |
 |:---------------- |:------------------------------------ |
 | `seoladh`        | seoladh cuntais a rinne aistarraingt |
 | `amount`         | méid aistarraingthe                  |
@@ -139,7 +139,7 @@ Ní hionann an feidhmiú seo agus córais atá bunaithe ar chruthúnas oibre, á
 
 ## Méid bloic {#block-size}
 
-Nóta tábhachtach deiridh is ea go bhfuil na bloic iad féin teoranta ó thaobh méide. Tá spriocmhéid de 30 milliún gáis ag gach bloc ach méadóidh nó laghdóidh méid na mbloc de réir éilimh líonra, suas go dtí an teorainn bloc de 60 milliún gáis (2x spriocmhéid bloc). Is féidir an teorainn gháis bhloc a choigeartú suas nó síos faoi fhachtóir 1/1024 ó theorainn gháis an bhloic roimhe sin. Mar thoradh air sin, is féidir le bailíochtóirí an teorainn gháis bloc a athrú trí chomhthoil. Ní mór méid iomlán an gháis a chaithfidh gach idirbheart sa bhloc a bheith níos lú ná teorainn gháis an bhloic. Tá sé seo tábhachtach toisc go gcinntíonn sé nach féidir le bloic a bheith mór go treallach. Más rud é go bhféadfadh bloic a bheith mór go treallach, ní bheadh nóid lána le níos lú feidhmíochta in ann coinneáil suas leis an líonra mar gheall ar riachtanais spáis agus luais. Dá mhéad an bloc, is mó an chumhacht ríomhaireachta a theastaíonn chun iad a phróiseáil in am don chéad sliotán eile. Is fórsa láraithe é seo, a ndéantar friotaíocht ina aghaidh trí theorainn a chur ar mhéideanna na mbloc.
+Nóta tábhachtach deiridh is ea go bhfuil na bloic iad féin teoranta ó thaobh méide. Tá spriocmhéid de 15 milliún gáis ag gach bloc ach méadóidh nó laghdóidh méid na mbloc de réir éilimh líonra, suas go dtí an teorainn bloc de 30 milliún gáis (2x spriocmhéid bloc). Is féidir an teorainn gháis bhloc a choigeartú suas nó síos faoi fhachtóir 1/1024 ó theorainn gháis an bhloic roimhe sin. Mar thoradh air sin, is féidir le bailíochtóirí an teorainn gháis bloc a athrú trí chomhthoil. Ní mór méid iomlán an gháis a chaithfidh gach idirbheart sa bhloc a bheith níos lú ná teorainn gháis an bhloic. Tá sé seo tábhachtach toisc go gcinntíonn sé nach féidir le bloic a bheith mór go treallach. Más rud é go bhféadfadh bloic a bheith mór go treallach, ní bheadh nóid lána le níos lú feidhmíochta in ann coinneáil suas leis an líonra mar gheall ar riachtanais spáis agus luais. Dá mhéad an bloc, is mó an chumhacht ríomhaireachta a theastaíonn chun iad a phróiseáil in am don chéad sliotán eile. Is fórsa láraithe é seo, a ndéantar friotaíocht ina aghaidh trí theorainn a chur ar mhéideanna na mbloc.
 
 ## Tuilleadh léitheoireachta {#further-reading}
 
