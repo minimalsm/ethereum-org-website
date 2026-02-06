@@ -79,7 +79,7 @@
   {
     "languageId": "ca",
     "words": {
-      "approved": 22282,
+      "approved": 22280,
       "total": 312825
     }
   },
@@ -121,7 +121,7 @@
   {
     "languageId": "el",
     "words": {
-      "approved": 281505,
+      "approved": 281590,
       "total": 312825
     }
   },
@@ -478,7 +478,7 @@
   {
     "languageId": "pt-PT",
     "words": {
-      "approved": 31720,
+      "approved": 31719,
       "total": 312825
     }
   },
@@ -492,7 +492,7 @@
   {
     "languageId": "ru",
     "words": {
-      "approved": 107301,
+      "approved": 107294,
       "total": 312825
     }
   },
@@ -674,7 +674,7 @@
   {
     "languageId": "yo",
     "words": {
-      "approved": 40794,
+      "approved": 40790,
       "total": 312825
     }
   },
