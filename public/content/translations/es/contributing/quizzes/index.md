@@ -15,7 +15,7 @@ He aquí algunos ejemplos de los tests actuales:
 - [Capa 2](/layer-2)
 - [NFT](/nft/)
 - [¿Qué es Ethereum?](/what-is-ethereum/)
-- [¿Qué es el ETH?](/what-is-ether/)
+- [¿Qué es el ETH?](/eth/)
 
 ## Añadir un test de aprendizaje
 
