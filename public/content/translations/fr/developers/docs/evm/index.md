@@ -1,10 +1,10 @@
 ---
-title: Machine virtuelle Ethereum (EVM)
+title: Machine Virtuelle Ethereum (EVM)
 description: Introduction à la machine virtuelle Ethereum et en quoi elle concerne l'état, les transactions et les contrats intelligents.
 lang: fr
 ---
 
-La machine virtuelle Ethereum (EVM) est un environnement virtuel décentralisé qui exécute le code de manière cohérente et sécurisée sur tous les nœuds Ethereum. Les nœuds exécutent l'EVM qui exécute des contrats intelligents, utilisant du «[gaz](/gas/)» pour mesurer l'effort de calcul requis pour les [opérations](/developers/docs/evm/opcodes/), garantissant une allocation efficace des ressources et la sécurité du réseau.
+La machine virtuelle Ethereum (EVM) est un environnement virtuel décentralisé qui exécute le code de manière cohérente et sécurisée sur tous les nœuds Ethereum. Les nœuds exécutent l'EVM qui exécute des contrats intelligents, utilisant du «[gaz](/developers/docs/gas/)» pour mesurer l'effort de calcul requis pour les [opérations](/developers/docs/evm/opcodes/), garantissant une allocation efficace des ressources et la sécurité du réseau.
 
 ## Prérequis {#prerequisites}
 
@@ -71,7 +71,7 @@ Les [clients d'exécution Ethereum](/developers/docs/nodes-and-clients/#executio
 - [Codes d'opérations de l'EVM](https://www.ethervm.io/)
 - [Documents de Référence aux Codes Opératoires de la Machine Virtuelle Ethereum](https://www.evm.codes/)
 - [Une courte introduction dans la documentation de Solidity](https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html#index-6)
-- [Maîtriser Ethereum - La Machine Virtuelle Ethereum](https://github.com/ethereumbook/ethereumbook/blob/openedition/13evm.asciidoc)
+- [Maîtriser Ethereum - La Machine Virtuelle Ethereum](https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc)
 
 ## Sujets connexes {#related-topics}
 
