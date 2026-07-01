@@ -331,7 +331,7 @@ def register(name, value):
 
 **2. 農産物保険**: インデックス価格ではなく天候データを使って、簡単に金融派生コントラクトを作ることができます。 もしアイオワ州の農家が、アイオワ州の降水量に応じて反比例して支払いが行われるデリバティブを購入した場合、干ばつが起きれば農家は自動的にお金を受け取ることができ、また十分な雨が降った時には作物がうまく育つので農家にとっては喜ばしいことになります。 これを一般的な自然災害保険に拡張することもできます。
 
-**3. 分散型データフィード**: 差金決済取引では、[SchellingCoin](https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed/)と呼ばれるプロトコルを用いてデータフィードを分散化できる可能性があります。 SchellingCoinは基本的に次のような仕組みになっています。N人の関係者全員が、特定のデータ値(例: ETH/USDの価格)をシステムに入力し、その値がソートされ、25～75パーセンタイルの全員が報酬として1トークンを取得します。 誰もが、他の人が入力するであろう答えを提供するインセンティブが与えられており、多数のプレイヤーが現実的に合意できる唯一の価値は、明白なデフォルトである「真実」です。 これにより、理論的にはETH/USDの価格、ベルリンの気温、さらには特定の難しい計算の結果など、あらゆる値を提供できる分散型プロトコルが誕生しました。
+**3. 分散型データフィード**: 差金決済取引では、[SchellingCoin](http://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed/)と呼ばれるプロトコルを用いてデータフィードを分散化できる可能性があります。 SchellingCoinは基本的に次のような仕組みになっています。N人の関係者全員が、特定のデータ値(例: ETH/USDの価格)をシステムに入力し、その値がソートされ、25～75パーセンタイルの全員が報酬として1トークンを取得します。 誰もが、他の人が入力するであろう答えを提供するインセンティブが与えられており、多数のプレイヤーが現実的に合意できる唯一の価値は、明白なデフォルトである「真実」です。 これにより、理論的にはETH/USDの価格、ベルリンの気温、さらには特定の難しい計算の結果など、あらゆる値を提供できる分散型プロトコルが誕生しました。
 
 **4. スマート・マルチシグネチャ・エスクロー**: ビットコインでは、例えば5つの鍵のうち3つの鍵が資金を使うことができる、マルチシグネチャのトランザクションコントラクトが可能です。 イーサリアムでは、より細かい設定が可能で、例えば、5つのうち4つはすべてを使うことができ、5つのうちの3つは1日10％まで、2つは1日0.5％まで使うことができるよう設定できます。 さらに、イーサリアムのマルチシグは非同期型で、2人の当事者が異なるタイミングでブロックチェーンに署名を登録すると、最後の署名が自動的にトランザクションを送信します。
 
@@ -383,7 +383,7 @@ Sompolinsky氏とZohar氏に説明されているように、GHOSTはどのチ�
 3. マイニングパワーの配分は、実際には非常に不平等になる可能性がある。
 4. ネットワークに害を及ぼすことを企てる投機家、政敵、精神異常者などが存在し、他の検証ノードが支払うコストよりもはるかに低いコストのコントラクトを巧みに設定できる。
 
-(1)は、マイナーがより少ないトランザクションを追加する傾向を生み出し、 (2) `NC`を増やすため、これら2つの効果は少なくとも部分的に相殺されます。<sup>[理由](https://web.archive.org/web/20250427212319/https://github.com/ethereum/wiki/issues/447#issuecomment-316972260#issuecomment-316972260)</sup> (3)と(4)は大きな問題であり、解決するため、単純にすべてのブロックが`BLK_LIMIT_FACTOR`に長期指数移動平均を掛けた数よりも多くの操作をブロックに含めることはできないというフローティングキャップを設けます。 具体的には:
+(1)は、マイナーがより少ないトランザクションを追加する傾向を生み出し、 (2) `NC`を増やすため、これら2つの効果は少なくとも部分的に相殺されます。<sup>[理由](https://github.com/ethereum/wiki/issues/447#issuecomment-316972260)</sup> (3)と(4)は大きな問題であり、解決するため、単純にすべてのブロックが`BLK_LIMIT_FACTOR`に長期指数移動平均を掛けた数よりも多くの操作をブロックに含めることはできないというフローティングキャップを設けます。 具体的には:
 
 ```js
 blk.oplimit = floor((blk.parent.oplimit \* (EMAFACTOR - 1) +
@@ -508,10 +508,10 @@ _通貨発行量が直線的であるにもかかわらず、ビットコイン�
 16. [GHOST](https://eprint.iacr.org/2013/881.pdf)
 17. [StorJおよび自律エージェント、Jeff Garzik](http://garzikrants.blogspot.ca/2013/01/storj-and-bitcoin-autonomous-agents.html)
 18. [Mike Hearnによるチューリングフェスティバルでのスマートプロパテ](https://www.youtube.com/watch?v=MVyv4t0OKe4)
-19. [イーサリアムRLP](https://web.archive.org/web/20250427212320/https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-RLP)
-20. [イーサリアム・メルクルパトリシアの木](https://web.archive.org/web/20250427212320/https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Patricia-Tree)
+19. [イーサリアムRLP](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-RLP)
+20. [イーサリアム・メルクルパトリシアの木](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Patricia-Tree)
 21. [Peter Toddによるマークルサムツリー](https://web.archive.org/web/20140623061815/http://sourceforge.net/p/bitcoin/mailman/message/31709140/)
 
-_ホワイトペーパーの履歴については、[こちらのwiki](https://web.archive.org/web/20250427212319/https://github.com/ethereum/wiki/blob/old-before-deleting-all-files-go-to-wiki-wiki-instead/old-whitepaper-for-historical-reference.md)を参照してください。_
+_ホワイトペーパーの履歴については、[こちらのwiki](https://github.com/ethereum/wiki/blob/old-before-deleting-all-files-go-to-wiki-wiki-instead/old-whitepaper-for-historical-reference.md)を参照してください。_
 
 _多くのコミュニティ主導のオープンソースソフトウェアプロジェクトと同様、イーサリアムは開始当初から進化してきました。 イーサリアムの最新の開発や、どのようなプロトコル変更が成されているかについて学ぶには[こちらのガイド](/learn/)をご覧になってください。_
