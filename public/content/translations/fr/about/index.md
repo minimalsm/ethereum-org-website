@@ -26,7 +26,7 @@ Ethereum est un réseau public, une blockchain et un protocole open source - mis
 
 Ether (également connu sous son symbole téléscripteur ETH) est la monnaie native transactionnelle utilisée sur Ethereum. De l'Ether est requis pour payer les frais inhérents à l'utilisation du réseau Ethereum (sous forme de frais de transaction). L'Ether (ETH) permet également de sécuriser le réseau à travers la mise en jeu. Les gens parlent du prix de l'Ethereum, en référence à son actif l'Ether (ETH).
 
-[En savoir plus sur ETH](/what-is-ether/)
+[En savoir plus sur ETH](/eth/)
 
 [Plus d'infos sur la mise en jeu ETH](/staking/)
 
@@ -90,9 +90,9 @@ Ethereum est un vaste concept : il s'agit d'une communauté, d'une technologie, 
 
 ## Feuille de route du produit {#roadmap}
 
-Afin de rendre notre travail plus accessible et de favoriser davantage la collaboration de la communauté, l'équipe principale de ethereum.org publie un aperçu des objectifs de notre feuille de route trimestrielle.
+Afin de rendre notre travail plus accessible et de favoriser une plus grande collaboration communautaire, l'équipe principale d'ethereum.org publie un aperçu des objectifs de notre feuille de route du [cycle de mise en forme](https://www.productplan.com/glossary/shape-up-method/).
 
-[Voir notre feuille de route du troisième trimestre 2024](https://github.com/ethereum/ethereum-org-website/issues/13399)
+[Voir notre feuille de route produit du cycle 1 2025](https://github.com/ethereum/ethereum-org-website/issues/14726)
 
 **Comment avez-vous trouvé cela ?** Nous nous réjouissons toujours de recevoir des feedbacks sur notre feuille de route - Y a-t-il encore des choses auxquelles nous devrions travailler ? N'hésitez pas à nous le faire savoir ! Nous accueillons avec plaisir les idées et les RP de n'importe quel membre de la communauté.
 
