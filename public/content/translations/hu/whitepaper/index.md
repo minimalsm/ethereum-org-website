@@ -331,7 +331,7 @@ Alice-nek általában elég naponta 1%, azonban, ha Alice-nek többre van szüks
 
 **2. Terménybiztosítás**. Bárki készíthet könnyedén származtatott szerződést, ha az árindexek helyett az időjárási adatokról érkező adatforrást használja. Ha egy iowai farmer olyan származtatott ügyletet vásárol, ami fordítottan fizet az Iowában esett csapadék alapján, majd, ha szárazság van, a farmer automatikusan pénzhez jut, ha pedig elég eső esik, a farmer szintén jól jár, mert jó termése lesz. Ez általánosságban kiterjeszthető természeti csapásra vonatkozó biztosítással.
 
-**3. Decentralizált adatforrás**. A pénzügyi CFD-k (nyitó- és záróérték közti különbség lekereskedése) esetében gyakorlatilag lehetőség van decentralizálni az adatforrást a [SchellingCoin](https://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed/) protokollal. A SchellingCoin a következőképpen működik: N fél beteszi a rendszerbe egy adott bázis értékét (például ETH/USD árfolyam), az értékeket rendezik, és mindenki, aki 25–75% között van egy tokent kap jutalmul. Ez a rendszer mindenkit arra ösztönöz, hogy olyan választ adjon, mint a többiek, és az egyetlen érték, amiben a résztvevők nagy száma realisztikusan egyet tud érteni a nyilvánvaló alap: az igazság. Ez egy decentralizált protokollt hoz létre, amely elméletileg bármilyen számú értéket adhat, ideértve az ETH/USD árát, vagy a berlini hőmérsékletet vagy egy nehéz számítási feladat eredményét.
+**3. Decentralizált adatforrás**. A pénzügyi CFD-k (nyitó- és záróérték közti különbség lekereskedése) esetében gyakorlatilag lehetőség van decentralizálni az adatforrást a [SchellingCoin](http://blog.ethereum.org/2014/03/28/schellingcoin-a-minimal-trust-universal-data-feed/) protokollal. A SchellingCoin a következőképpen működik: N fél beteszi a rendszerbe egy adott bázis értékét (például ETH/USD árfolyam), az értékeket rendezik, és mindenki, aki 25–75% között van egy tokent kap jutalmul. Ez a rendszer mindenkit arra ösztönöz, hogy olyan választ adjon, mint a többiek, és az egyetlen érték, amiben a résztvevők nagy száma realisztikusan egyet tud érteni a nyilvánvaló alap: az igazság. Ez egy decentralizált protokollt hoz létre, amely elméletileg bármilyen számú értéket adhat, ideértve az ETH/USD árát, vagy a berlini hőmérsékletet vagy egy nehéz számítási feladat eredményét.
 
 **4. Okos, több aláírásos fedezet**. A Bitcoin többaláírásos tranzakciós szerződéseket is enged, ahol például öt kulcsból három tudja elkölteni a pénzeszközöket. Az Ethereum ennél részletesebb lehetőségeket is kínál; például ötből négy mindent el tud költeni, ötből három naponta 10%-ot, ötből kettő pedig csak napi 0,5%-ot. Továbbá az Ethereum több aláírásos megoldás aszinkron – két fél különböző időben tudja regisztrálni az aláírását a blokkláncon, az utolsó aláírás küldi el automatikusan a tranzakciót.
 
@@ -383,7 +383,7 @@ Azonban a valóságban a feltételezésektől számos fontos eltérés mutatkozi
 3. A bányászati teljesítmény eloszlása a gyakorlatban radikálisan egyenlőtlenné válhat.
 4. A spekulánsok, politikai ellenségek és őrültek, akiknek a használati függvényei a hálózatra nézve káros elemeket tartalmaznak okosan olyan szerződéseket készíthetnek, amelyekben a költségeik sokkal alacsonyabbak, mint a többi hitelesítő csomópont által fizetett költségek.
 
-(1) olyan tendenciát biztosít a bányásznak, hogy kevesebb tranzakcióba vonódjon bele, és (2) növeli az `NC` értékét; következésképpen ez a két hatás legalább részben kioltja egymást.<sup>[Hogyan?](https://web.archive.org/web/20250427212319/https://github.com/ethereum/wiki/issues/447#issuecomment-316972260#issuecomment-316972260)</sup> A (3) és (4) a fő probléma; megoldásukra egy egyszerű lebegő limitet alkalmazunk: egyetlen blokkon sem lehet több művelet mint a hosszú távú exponenciális mozgóátlag `BLK_LIMIT_FACTOR`-szorosa. Különösképpen:
+(1) olyan tendenciát biztosít a bányásznak, hogy kevesebb tranzakcióba vonódjon bele, és (2) növeli az `NC` értékét; következésképpen ez a két hatás legalább részben kioltja egymást.<sup>[Hogyan?](https://github.com/ethereum/wiki/issues/447#issuecomment-316972260)</sup> A (3) és (4) a fő probléma; megoldásukra egy egyszerű lebegő limitet alkalmazunk: egyetlen blokkon sem lehet több művelet mint a hosszú távú exponenciális mozgóátlag `BLK_LIMIT_FACTOR`-szorosa. Különösképpen:
 
 ```js
 blk.oplimit = floor((blk.parent.oplimit \* (EMAFACTOR - 1) +
@@ -508,10 +508,10 @@ Az Ethereum-protokollban implementált tetszőleges státuszváltozási függvé
 16. [GHOST](https://eprint.iacr.org/2013/881.pdf)
 17. [StorJ és Autonóm ügynökök, Jeff Garzik](http://garzikrants.blogspot.ca/2013/01/storj-and-bitcoin-autonomous-agents.html)
 18. [Mike Hearn az Okos tulajdonságokról a Turing Fesztiválon](https://www.youtube.com/watch?v=MVyv4t0OKe4)
-19. [Ethereum RLP](https://web.archive.org/web/20250427212320/https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-RLP)
-20. [Ethereum Merkle-Patricia-fák](https://web.archive.org/web/20250427212320/https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Patricia-Tree)
+19. [Ethereum RLP](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-RLP)
+20. [Ethereum Merkle-Patricia-fák](https://github.com/ethereum/wiki/wiki/%5BEnglish%5D-Patricia-Tree)
 21. [Peter Todd a Merkle-összegfákról](https://web.archive.org/web/20140623061815/http://sourceforge.net/p/bitcoin/mailman/message/31709140/)
 
-_A fehérkönyv történetét tekintse meg ezen [a wiki](https://web.archive.org/web/20250427212319/https://github.com/ethereum/wiki/blob/old-before-deleting-all-files-go-to-wiki-wiki-instead/old-whitepaper-for-historical-reference.md) oldalon._
+_A fehérkönyv történetét tekintse meg ezen [a wiki](https://github.com/ethereum/wiki/blob/old-before-deleting-all-files-go-to-wiki-wiki-instead/old-whitepaper-for-historical-reference.md) oldalon._
 
 _Az Ethereum, hasonlóan sok más közösség által vezetett, nyílt forráskódú szoftverprojekthez, a kezdeti elindulás óta sokat fejlődött. Ha többet szeretnél megtudni az Ethereum legutóbbi fejlesztéseiről és az általunk elvégzett protokollváltoztatásokról, akkor ezt az [útmutatót](/learn/) ajánljuk._
